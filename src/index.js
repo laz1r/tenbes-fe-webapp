@@ -1,17 +1,15 @@
+// imports load components and assets
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom'; // imports react-dom from node_modules
+import './index.css'; // can import images and style sheets
+import App from './App'; // imports App component from root
+import 'bootstrap/dist/css/bootstrap.min.css'; // changed my overall look !
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+// CSS info-
+// color of original heading - #f1356d
+// color of original body - #CCFFFF
+ReactDOM.render( // to render React component to DOM
+    <App />,
+  document.getElementById('root') // first arg - component to be rendered, 
+                                  // sec arg - element or container where component will be rendered
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
