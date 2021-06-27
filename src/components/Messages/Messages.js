@@ -1,3 +1,5 @@
+// Chat messages in chatroom
+
 import React from 'react'
 
 const Messages = ({ messages, currentUser }) => {
