@@ -1,3 +1,5 @@
+// Input bar in the chatroom
+
 import React, { useState } from 'react'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
