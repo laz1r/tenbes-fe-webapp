@@ -5,11 +5,8 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 import Modal from 'react-bootstrap/Modal';
 import Media from 'react-bootstrap/Media';
 import Button from 'react-bootstrap/Button';
-//import ReactTable from 'react-table';
 
 export const PairListTable3 = (props) => {
-
-    console.log("props 1: " , props);
 
     const [data, setData] = useState([]);
     const [date, setDate] = useState('');
@@ -46,7 +43,6 @@ export const PairListTable3 = (props) => {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             
-            // need to get datetime from data response
             body: JSON.stringify({ description: description, datetime: datetime, user: { id: props.userId } }) 
                 
             })
@@ -56,7 +52,6 @@ export const PairListTable3 = (props) => {
         hideModal();    
     }
 
-    // ** NEED to work on this !!!
     const deleteSchedule = () => {
 
         let timeHolder = this.state.startTime + ":00";   
@@ -80,11 +75,10 @@ export const PairListTable3 = (props) => {
 
     const fetchData = () => {
 
-        // ** convert local time to utc
+        // convert local time to utc
         let timezoneName = new Date(date + " " + startTime).toISOString();
             
-        // take out .000Z
-        // ** find index of '.'
+        // find index of '.'
         let pos = timezoneName.indexOf('.');
         let timezoneNameSliced = timezoneName.slice(0, pos);
     
@@ -106,7 +100,6 @@ export const PairListTable3 = (props) => {
                 setData(response);  
             })
     
-        console.log(datetime); // on second state change this will log !
     }
     
     const handleDateChange = (e) => {
@@ -120,24 +113,6 @@ export const PairListTable3 = (props) => {
     const handleDescriptionChange = (e) => {
         setDescription(e.target.value);
     }
-
-    // // used for React Table
-    // const columns = [{
-    //     Header: 'User', // Header of column
-    //     accessor: 'userName' // value accessor
-    // }, {
-    //     Header: 'Description',
-    //     accessor: 'description',    
-    // }, {
-    //     // ** FIX THESE. MERGE ADD AND DELETE !!
-    //     Header: 'Add',
-    //     id: 'add-button',
-    //     Cell: <button onClick={showModal}>Pair</button>, 
-    // }, {
-    //     Header: 'Delete',
-    //     id: 'delete-button',
-    //     Cell: <button>Unpair</button>
-    // }]
       
     return (
         
@@ -157,13 +132,10 @@ export const PairListTable3 = (props) => {
                     <input type="text" placeholder="Enter time" name="start_time" onChange={handleStartTimeChange} /> 
 
                 </div>
-                {/* <div className='test-button'>
-                    <button onClick={fetchUsers}>Users</button>
-                </div> */}
+                
                 <br></br>
                 <br></br>
 
-                 {/* <ReactTable data={data} columns={columns} />     */}
                
                 <div className="user-list">                   
                     {data.map((media, index) => {                   
