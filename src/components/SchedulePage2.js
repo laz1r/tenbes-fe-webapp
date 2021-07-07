@@ -18,7 +18,6 @@ export class SchedulePage2 extends React.Component {
     this.sendSchedule = this.sendSchedule.bind(this); // had to bind this !!,  this was
                       // causing error with 'this.state' undefined **
     this.deleteSchedule = this.deleteSchedule.bind(this);
-    //this.onDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleDateTimeChange = this.handleDateTimeChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -32,24 +31,18 @@ export class SchedulePage2 extends React.Component {
   };
 
   sendSchedule() {
+    
     // add :00 to time 
     let timeHolder = this.state.startTime + ":00";
     
-    // convert to UTC - have to do on client because client knows the local time
     // 1. get local time zone
-    //const offset = new Date().getTimezoneOffset(); // minutes from UTC
     const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
     
-    // 2. datetime = date + time
-    //let datetimeString = this.state.d + "T" + timeHolder;
-    // 3. convert to utc
-    // ex. datetime = "2012-02-12 09:30:00" - local
+    // 2. datetime = date + time   
     const combinedString = this.state.d + " " + timeHolder;
+    
+    // 3. convert to utc
     const utcDate = zonedTimeToUtc(combinedString,timezoneName); // adds GMT-0700 tag
-    // sends "2012-02-12 09:30:00 GMT-0700" 
-    console.log(utcDate); 
-    console.log(this.state.userName);
-    console.log("userId: " + this.state.userId);
            
     const url = 'http://localhost:8080/addS'; // store time in DB as UTC
       fetch(url,
